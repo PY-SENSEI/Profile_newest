@@ -1,3 +1,4 @@
+import { Github, Linkedin, Terminal } from "lucide-react";
 import { motion } from "motion/react";
 import FadeIn from "../components/FadeIn";
 import Magnet from "../components/Magnet";
@@ -50,17 +51,30 @@ export default function HeroSection() {
       {/* Bottom Bar */}
       <div className="flex w-full items-end justify-between">
         <FadeIn y={20} delay={0.35} className="max-w-[160px] sm:max-w-[220px] md:max-w-[260px]">
-          <p
-            className="text-left font-light uppercase leading-snug tracking-wide text-[#D7E2EA]"
-            style={{ fontSize: "clamp(0.75rem, 1.4vw, 1.5rem)" }}
-          >
-            a software developer driven by crafting high-performance and user-centric applications
-          </p>
+          <div className="flex flex-col gap-2">
+            <Terminal size={18} className="text-[#B600A8]/80" />
+            <p
+              className="text-left font-light uppercase leading-snug tracking-wide text-[#D7E2EA]"
+              style={{ fontSize: "clamp(0.75rem, 1.4vw, 1.5rem)" }}
+            >
+              a software developer driven by crafting high-performance and user-centric applications
+            </p>
+          </div>
         </FadeIn>
         
-        <FadeIn y={20} delay={0.5}>
-          <ContactButton />
-        </FadeIn>
+        <div className="flex items-center gap-4 sm:gap-6">
+          <FadeIn y={20} delay={0.45} className="flex gap-4">
+             <a href="https://github.com" target="_blank" rel="noreferrer" className="text-[#D7E2EA]/50 transition-colors hover:text-[#D7E2EA]">
+               <Github size={24} />
+             </a>
+             <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="text-[#D7E2EA]/50 transition-colors hover:text-[#D7E2EA]">
+               <Linkedin size={24} />
+             </a>
+          </FadeIn>
+          <FadeIn y={20} delay={0.5}>
+            <ContactButton />
+          </FadeIn>
+        </div>
       </div>
     </section>
   );
