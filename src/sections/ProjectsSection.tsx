@@ -17,8 +17,8 @@ const projects = [
   {
     num: "02",
     category: "Personal",
-    name: "Aura Brand Identity",
-    url: "#",
+    name: "Mind Loop",
+    url: "https://mind-loop-nine.vercel.app/",
     images: [
       "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055654_911201c5-36d9-4bc6-bac7-331adfce159f.png&w=1280&q=85",
       "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055723_5ceda0b8-d9c2-4665-b2e3-83ba19ba76d1.png&w=1280&q=85",
@@ -52,25 +52,35 @@ const Card = ({ project, index, progress, range, targetScale }: CardProps) => {
   const scale = useTransform(progress, range, [1, targetScale]);
 
   return (
-    <div ref={containerRef} className="sticky top-24 md:top-32 flex h-[85vh] items-start justify-center">
+    <div ref={containerRef} className="sticky top-24 md:top-32 flex h-[85vh] items-start justify-center px-2">
       <motion.div
+        whileHover="hover"
         style={{
           scale,
           top: `calc(-5% + ${index * 28}px)`,
         }}
-        className="relative h-full w-full max-w-6xl overflow-hidden rounded-[40px] border-2 border-[#D7E2EA] bg-[#0C0C0C] p-4 sm:rounded-[50px] sm:p-6 md:rounded-[60px] md:p-8"
+        className="group relative h-full w-full max-w-6xl overflow-hidden rounded-[40px] border-2 border-[#D7E2EA]/30 bg-[#0C0C0C] p-4 transition-colors duration-500 hover:border-[#B600A8]/50 sm:rounded-[50px] sm:p-6 md:rounded-[60px] md:p-8"
       >
+        {/* Hover Shadow Overlay */}
+        <motion.div 
+          variants={{
+            hover: { opacity: 1, scale: 1 }
+          }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-br from-[#B600A8]/5 via-transparent to-transparent opacity-0 transition-opacity duration-500"
+        />
+
         {/* Top Row */}
-        <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+        <div className="relative z-10 mb-8 flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-6">
-            <span className="font-black leading-none" style={{ fontSize: "clamp(2rem, 8vw, 80px)" }}>
+            <span className="font-black leading-none text-[#D7E2EA]" style={{ fontSize: "clamp(2rem, 8vw, 80px)" }}>
               {project.num}
             </span>
             <div className="flex flex-col">
               <span className="text-xs uppercase tracking-widest text-[#D7E2EA]/60 sm:text-sm">
                 {project.category}
               </span>
-              <h3 className="font-medium uppercase tracking-tight" style={{ fontSize: "clamp(1rem, 2.5vw, 2.5rem)" }}>
+              <h3 className="font-medium uppercase tracking-tight text-[#D7E2EA]" style={{ fontSize: "clamp(1rem, 2.5vw, 2.5rem)" }}>
                 {project.name}
               </h3>
             </div>
@@ -79,25 +89,43 @@ const Card = ({ project, index, progress, range, targetScale }: CardProps) => {
         </div>
 
         {/* Image Grid */}
-        <div className="grid h-[calc(100%-120px)] grid-cols-10 gap-3">
+        <div className="relative z-10 grid h-[calc(100%-120px)] grid-cols-10 gap-3">
           {/* Left Column (40%) */}
           <div className="col-span-10 flex flex-col gap-3 sm:col-span-4">
             <div 
               className="w-full overflow-hidden rounded-[20px] sm:rounded-[30px] md:rounded-[40px]"
               style={{ height: "clamp(130px, 16vw, 230px)" }}
             >
-              <img src={project.images[0]} alt="" className="h-full w-full object-cover" />
+              <motion.img 
+                variants={{ hover: { scale: 1.05 } }}
+                transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
+                src={project.images[0]} 
+                alt="" 
+                className="h-full w-full object-cover" 
+              />
             </div>
             <div 
               className="w-full overflow-hidden rounded-[20px] sm:rounded-[30px] md:rounded-[40px]"
               style={{ height: "clamp(160px, 22vw, 340px)" }}
             >
-              <img src={project.images[1]} alt="" className="h-full w-full object-cover" />
+              <motion.img 
+                variants={{ hover: { scale: 1.05 } }}
+                transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
+                src={project.images[1]} 
+                alt="" 
+                className="h-full w-full object-cover" 
+              />
             </div>
           </div>
           {/* Right Column (60%) */}
           <div className="col-span-10 h-full overflow-hidden rounded-[20px] sm:col-span-6 sm:rounded-[30px] md:rounded-[40px]">
-            <img src={project.images[2]} alt="" className="h-full w-full object-cover" />
+            <motion.img 
+              variants={{ hover: { scale: 1.03 } }}
+              transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
+              src={project.images[2]} 
+              alt="" 
+              className="h-full w-full object-cover" 
+            />
           </div>
         </div>
       </motion.div>

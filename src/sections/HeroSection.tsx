@@ -8,7 +8,8 @@ export default function HeroSection() {
   const navLinks = ["About", "Experience", "Projects", "Contact"];
 
   const { scrollY } = useScroll();
-  const parallaxX = useTransform(scrollY, [0, 1000], [0, 200]);
+  const parallaxX = useTransform(scrollY, [0, 1000], [0, -300]);
+  const parallaxHead = useTransform(scrollY, [0, 500], [0, 100]);
 
   return (
     <section className="relative flex min-h-screen flex-col justify-between overflow-x-clip px-6 pb-7 sm:px-10 sm:pb-8 md:pb-10">
@@ -61,17 +62,18 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Hero Portrait */}
-      <div className="absolute left-1/2 top-[60%] z-10 w-[280px] -translate-x-1/2 -translate-y-1/2 sm:bottom-0 sm:top-auto sm:w-[350px] sm:translate-y-0 md:w-[420px] lg:w-[500px]">
-        <FadeIn y={30} delay={0.6}>
-          <Magnet padding={150} strength={3}>
-            <img
-              src="https://shrug-person-78902957.figma.site/_components/v2/d24c01ad3a56fc65e942a1f501eb73db42d7cf9a/Rectangle_40443.81459862.png"
-              alt="Gaurav Portrait"
-              className="w-full object-contain"
-            />
-          </Magnet>
-        </FadeIn>
+      <div className="absolute left-1/2 top-[65%] z-10 w-[240px] -translate-x-1/2 -translate-y-1/2 sm:bottom-0 sm:top-auto sm:w-[320px] sm:translate-y-0 md:w-[380px] lg:w-[440px]">
+        <motion.div style={{ y: parallaxHead }}>
+          <FadeIn y={30} delay={0.6}>
+            <Magnet padding={150} strength={3}>
+              <img
+                src="https://shrug-person-78902957.figma.site/_components/v2/d24c01ad3a56fc65e942a1f501eb73db42d7cf9a/Rectangle_40443.81459862.png"
+                alt="Gaurav Portrait"
+                className="w-full object-contain"
+              />
+            </Magnet>
+          </FadeIn>
+        </motion.div>
       </div>
 
       {/* Bottom Bar */}
