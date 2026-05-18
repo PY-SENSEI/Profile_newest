@@ -1,11 +1,14 @@
 import { Github, Linkedin, Terminal } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import FadeIn from "../components/FadeIn";
 import Magnet from "../components/Magnet";
 import { ContactButton } from "../components/Buttons";
 
 export default function HeroSection() {
   const navLinks = ["About", "Experience", "Projects", "Contact"];
+
+  const { scrollY } = useScroll();
+  const parallaxX = useTransform(scrollY, [0, 1000], [0, 200]);
 
   return (
     <section className="relative flex min-h-screen flex-col justify-between overflow-x-clip px-6 pb-7 sm:px-10 sm:pb-8 md:pb-10">
@@ -25,18 +28,41 @@ export default function HeroSection() {
       </FadeIn>
 
       {/* Hero Heading */}
-      <div className="relative z-0 mt-6 flex flex-1 flex-col justify-center sm:mt-4 md:-mt-5">
+      <div className="relative z-0 mt-12 flex flex-1 flex-col justify-center sm:mt-16 md:mt-20">
         <div className="overflow-hidden">
           <FadeIn y={40} delay={0.15}>
-            <h1 className="hero-heading w-full whitespace-nowrap text-center text-[14vw] font-black uppercase leading-none tracking-tight sm:text-[15vw] md:text-[16vw] lg:text-[17.5vw]">
-              Hi, i&apos;m gaurav
-            </h1>
+            <motion.div style={{ x: parallaxX }} className="flex whitespace-nowrap">
+              <motion.div
+                animate={{ x: ["0%", "-100%"] }}
+                transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
+                className="flex"
+              >
+                <h1 className="hero-heading px-4 text-[14vw] font-black uppercase leading-none tracking-tight sm:text-[15vw] md:text-[16vw] lg:text-[17.5vw]">
+                  Hi, i&apos;m gaurav &bull;
+                </h1>
+                <h1 className="hero-heading px-4 text-[14vw] font-black uppercase leading-none tracking-tight sm:text-[15vw] md:text-[16vw] lg:text-[17.5vw]">
+                  Hi, i&apos;m gaurav &bull;
+                </h1>
+              </motion.div>
+              <motion.div
+                animate={{ x: ["0%", "-100%"] }}
+                transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
+                className="flex"
+              >
+                <h1 className="hero-heading px-4 text-[14vw] font-black uppercase leading-none tracking-tight sm:text-[15vw] md:text-[16vw] lg:text-[17.5vw]">
+                  Hi, i&apos;m gaurav &bull;
+                </h1>
+                <h1 className="hero-heading px-4 text-[14vw] font-black uppercase leading-none tracking-tight sm:text-[15vw] md:text-[16vw] lg:text-[17.5vw]">
+                  Hi, i&apos;m gaurav &bull;
+                </h1>
+              </motion.div>
+            </motion.div>
           </FadeIn>
         </div>
       </div>
 
       {/* Hero Portrait */}
-      <div className="absolute left-1/2 top-1/2 z-10 w-[280px] -translate-x-1/2 -translate-y-1/2 sm:bottom-0 sm:top-auto sm:w-[360px] sm:translate-y-0 md:w-[440px] lg:w-[520px]">
+      <div className="absolute left-1/2 top-[60%] z-10 w-[280px] -translate-x-1/2 -translate-y-1/2 sm:bottom-0 sm:top-auto sm:w-[350px] sm:translate-y-0 md:w-[420px] lg:w-[500px]">
         <FadeIn y={30} delay={0.6}>
           <Magnet padding={150} strength={3}>
             <img

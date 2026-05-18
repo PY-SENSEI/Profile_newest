@@ -21,9 +21,16 @@ export function ContactButton() {
   );
 }
 
-export function LiveProjectButton() {
+export function LiveProjectButton({ url }: { url?: string }) {
+  const handleClick = () => {
+    if (url) window.open(url, "_blank");
+  };
+
   return (
-    <button className="rounded-full border-2 border-[#D7E2EA] px-8 py-3 sm:px-10 sm:py-3.5 text-sm sm:text-base font-medium uppercase tracking-widest text-[#D7E2EA] transition-colors hover:bg-[#D7E2EA]/10">
+    <button
+      onClick={handleClick}
+      className={`${url ? "cursor-pointer" : ""} rounded-full border-2 border-[#D7E2EA] px-8 py-3 sm:px-10 sm:py-3.5 text-sm sm:text-base font-medium uppercase tracking-widest text-[#D7E2EA] transition-colors hover:bg-[#D7E2EA]/10`}
+    >
       Live Project
     </button>
   );
